@@ -12,12 +12,10 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAppTheme } from "../hooks/theme";
 import { ContextAuth } from "../provider/provider_auth";
 
 export default function Nav({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const theme = useAppTheme();
   const { loginOff } = useContext(ContextAuth);
   const colorScheme = useColorScheme();
   const [isOpen, setIsOpen] = useState(false);
@@ -48,32 +46,20 @@ export default function Nav({ children }: { children: React.ReactNode }) {
       }}
     >
       {icon}
-      <Text style={{ ...styles.itemText, color: theme.text }}>{title}</Text>
+      <Text style={{ ...styles.itemText }}>{title}</Text>
     </TouchableOpacity>
   );
 
   const NavItens = () => (
     <ScrollView style={{ width: "100%" }}>
       <ItemList
-        icon={
-          <Ionicons
-            name="bar-chart-outline"
-            size={20}
-            color={colorScheme === "dark" ? "white" : "black"}
-          />
-        }
+        icon={<Ionicons name="bar-chart-outline" size={20} />}
         title="Dashboard"
         path="/operadorui"
       />
 
       <ItemList
-        icon={
-          <Feather
-            name="log-out"
-            size={20}
-            color={colorScheme === "dark" ? "white" : "black"}
-          />
-        }
+        icon={<Feather name="log-out" size={20} />}
         title="Sair"
         path="/"
       />
@@ -85,26 +71,13 @@ export default function Nav({ children }: { children: React.ReactNode }) {
       <StatusBar />
       <View style={styles.container}>
         <View style={styles.header}>
-          {colorScheme === "dark" && (
-            <Image
-              source={require("@/utils/assets/images/letreiro_dark.png")}
-              style={styles.logoSmall}
-              resizeMode="contain"
-            />
-          )}
-          {colorScheme === "light" && (
-            <Image
-              source={require("@/utils/assets/images/letreiro_white.png")}
-              style={styles.logoSmall}
-              resizeMode="contain"
-            />
-          )}
+          <Image
+            source={require("@/utils/assets/images/letreiro_nav.png")}
+            style={styles.logoSmall}
+            resizeMode="contain"
+          />
           <TouchableOpacity onPress={handleState}>
-            <Feather
-              name="menu"
-              size={28}
-              color={colorScheme === "dark" ? "white" : "black"}
-            />
+            <Feather name="menu" size={28} />
           </TouchableOpacity>
         </View>
 

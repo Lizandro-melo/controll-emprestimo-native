@@ -3,6 +3,7 @@ import {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useContext,
   useLayoutEffect,
   useState,
 } from "react";
@@ -11,7 +12,8 @@ import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { Alert } from "react-native";
 import Nav from "../components/nav";
-import { api } from "../constants";
+import { api } from "../constants/app";
+import { ContextLoading } from "./provider_loading";
 
 export type LoginData = {
   login: string;
@@ -35,6 +37,7 @@ export function ProviderAuth({ children }: { children: ReactNode }) {
   const [headers, setHeaders] = useState<{ Authorization: string }>({
     Authorization: "",
   });
+  const { startLoading } = useContext(ContextLoading);
 
   useLayoutEffect(() => {
     const checkSession = async () => {
@@ -45,20 +48,22 @@ export function ProviderAuth({ children }: { children: ReactNode }) {
     checkSession();
   }, []);
 
-  const loginIn = async (data: LoginData) => {
+  const loginIn = (data: LoginData) => {
     if (!data.senha || !data.login) {
       Alert.alert("Alerta", "Por favor preencha todos os campos");
       return;
     }
-    await api
-      .post("/auth/login", data)
-      .then(async (response) => {
-        router.push("/session");
-        await SecureStore.setItemAsync("session", response.data.result);
-      })
-      .catch((e) => {
-        Alert.alert("Alerta", e.response?.data.m || e.message);
-      });
+    startLoading(
+      api
+        .post("/auth/login", data)
+        .then(async (response) => {
+          router.push("/session");
+          await SecureStore.setItemAsync("session", response.data.result);
+        })
+        .catch((e) => {
+          Alert.alert("Alerta", e.response?.data.m || e.message);
+        })
+    );
   };
 
   const loginOff = async () => {

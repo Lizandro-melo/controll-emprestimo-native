@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   StyleSheet,
   Text,
@@ -5,23 +6,20 @@ import {
   TextInputProps,
   View,
 } from "react-native";
-import { useAppTheme } from "../hooks/theme";
+import { SCREEN_WIDTH } from "../constants/app";
 
-export default function LabelInput({ ...props }: TextInputProps) {
-  const theme = useAppTheme();
-
+const LabelInput = memo(function LabelInput({ ...props }: TextInputProps) {
   return (
     <View style={styles.container}>
-      <Text style={{ ...styles.label, color: theme.text }}>{props.id}</Text>
-      <TextInput style={{ ...styles.input, color: theme.text }} {...props} />
+      <Text style={{ ...styles.label }}>{props.id}</Text>
+      <TextInput style={{ ...styles.input }} {...props} />
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%",
-    display: "flex",
+    width: SCREEN_WIDTH * 0.8,
     gap: 10,
   },
   label: {
@@ -32,6 +30,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: "#e5e7eb",
     padding: 10,
-    width: "100%",
   },
 });
+
+export default LabelInput;

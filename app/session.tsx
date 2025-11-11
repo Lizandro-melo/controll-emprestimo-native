@@ -1,4 +1,4 @@
-import { api } from "@/utils/constants";
+import { api } from "@/utils/constants/app";
 import { ContextAuth } from "@/utils/provider/provider_auth";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";

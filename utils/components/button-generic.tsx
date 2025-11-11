@@ -1,25 +1,25 @@
-import { Pressable, Text } from "react-native";
+import { GestureResponderEvent, Text, TouchableOpacity } from "react-native";
 
 type ButtonGenericProps = {
   variant: "default" | "denied" | "link";
   text: string;
-  press: () => void;
+  press: (event: GestureResponderEvent) => void;
+  disabled?: boolean;
 };
 
 export default function ButtonGeneric({ ...props }: ButtonGenericProps) {
   return (
     <>
       {props.variant === "default" && (
-        <Pressable
-          style={({ pressed }) => [
-            {
-              backgroundColor: "#282f3d",
-              paddingHorizontal: 50,
-              paddingVertical: 10,
-              borderRadius: 10,
-            },
-          ]}
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#282f3d",
+            paddingHorizontal: 50,
+            paddingVertical: 10,
+            borderRadius: 10,
+          }}
           onPress={props.press}
+          disabled={props.disabled}
         >
           <Text
             style={{
@@ -29,7 +29,7 @@ export default function ButtonGeneric({ ...props }: ButtonGenericProps) {
           >
             {props.text}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       )}
     </>
   );
