@@ -1,4 +1,4 @@
-# 💸 Sistema de Controle de Empréstimos - lado do servidor
+# 💸 Sistema de Controle de Empréstimos - lado do usuario
 
 Um sistema web simples e eficiente desenvolvido com **Next.js**, **TypeScript** e **Prisma ORM** para **gerenciar empréstimos, clientes e pagamentos**.  
 O foco é **controle financeiro pessoal ou de pequenos negócios**, com interface intuitiva e alertas automáticos de vencimento.
