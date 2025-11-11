@@ -1,50 +1,111 @@
-# Welcome to your Expo app 👋
+# 💸 Sistema de Controle de Empréstimos - lado do servidor
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Um sistema web simples e eficiente desenvolvido com **Next.js**, **TypeScript** e **Prisma ORM** para **gerenciar empréstimos, clientes e pagamentos**.  
+O foco é **controle financeiro pessoal ou de pequenos negócios**, com interface intuitiva e alertas automáticos de vencimento.
 
-## Get started
+---
 
-1. Install dependencies
+## 🧩 Funcionalidades Principais
 
-   ```bash
-   npm install
-   ```
+### 💰 Gestão de Empréstimos
+- Cadastro manual de empréstimos com:
+  - Nome do cliente
+  - Valor emprestado
+  - Data do empréstimo e data de vencimento
+  - Status de pagamento (em aberto, pago, vencido)
+- Atualização rápida do status de pagamento.
+- Histórico completo de empréstimos com filtros por cliente e data.
 
-2. Start the app
+### 📅 Alertas e Controle
+- **Avisos automáticos na interface** sobre:
+  - Empréstimos vencidos.
+  - Pagamentos próximos do vencimento.
+- Destaque visual para itens críticos (cores e ícones).
+- Estatísticas resumidas: total emprestado, recebido e pendente.
 
-   ```bash
-   npx expo start
-   ```
+### 👥 Clientes
+- Cadastro e visualização de clientes.
+- Histórico de empréstimos vinculados a cada cliente.
+- Busca inteligente e ordenação alfabética.
 
-In the output, you'll find options to open the app in a
+### 🧭 Estrutura de Navegação
+- Layout moderno e responsivo com barra lateral.
+- Páginas principais:
+  - `/auth` – Login do sistema.
+  - `/` – Dashboard principal.
+  - `/emprestimos` – Lista e cadastro de empréstimos.
+  - `/clientes` – Gestão de clientes.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## ⚙️ Tecnologias Utilizadas
 
-## Get a fresh project
+| Categoria | Tecnologias |
+|------------|--------------|
+| Framework | **Next.js 14**, **React 18** |
+| Linguagem | **TypeScript** |
+| Banco de Dados | **Prisma ORM** |
+| Estilização | **TailwindCSS**, **Shadcn UI** |
+| Autenticação | **Cookies (nookies)** |
+| Formulários | **React Hook Form** |
+| Ícones | **React Icons** |
+| Tipografia | **Google Fonts (Montserrat)** |
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## 🏗️ Estrutura do Projeto
+
+```
+📁 src
+├── components/
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── input.tsx
+│   │   ├── label-input.tsx
+│   │   ├── dialog.tsx
+│   │   ├── nav.tsx
+│   │   ├── card.tsx
+│   │   └── response-alert.tsx
+│
+├── pages/
+│   ├── index.tsx                 # Dashboard principal
+│   ├── emprestimos/index.tsx     # Lista e cadastro de empréstimos
+│   ├── clientes/index.tsx        # Gestão de clientes
+│   └── auth/
+│       └── index.tsx             # Tela de login
+│
+├── prisma/
+│   └── schema.prisma             # Modelos e schema do banco
+│
+├── provider/
+│   └── provider_auth.tsx         # Contexto de autenticação
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🚀 Como Executar o Projeto
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1️⃣ Clonar o repositório
+```bash
+git clone https://github.com/Lizandro-melo/controll-emprestimo.git
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 2️⃣ Instalar dependências
+```bash
+pnpm i
+```
 
-## Join the community
+### 3️⃣ Configurar o banco de dados
+Edite o arquivo `.env` com sua URL do banco de dados e execute:
+```bash
+pnpx prisma migrate dev
+```
 
-Join our community of developers creating universal apps.
+### 4️⃣ Rodar o projeto
+```bash
+pnpm run dev
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Acesse em: [http://localhost:3000](http://localhost:3000)
+
+---
